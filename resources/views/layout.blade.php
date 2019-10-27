@@ -65,20 +65,21 @@
         </style>
     </head>
     <body>
-        <nav class="navbar navbar-expand-md navbar-light">
-            <div class="container"> <a class="navbar-brand text-primary" href="#">
-                <i class="fa d-inline fa-lg fa-stop-circle"></i>
-                <b> BRAND</b>
-                </a> <button class="navbar-toggler navbar-toggler-right border-0" type="button" data-toggle="collapse" data-target="#navbar4">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <div class="container"> 
+                <a class="navbar-brand text-primary" href="/"><b>Home</b></a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbar4">
+
+                <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
                     <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"> <a class="nav-link" href="#">Features</a> </li>
-                    <li class="nav-item"> <a class="nav-link" href="#">Pricing</a> </li>
-                    <li class="nav-item"> <a class="nav-link" href="#">About</a> </li>
-                    <li class="nav-item"> <a class="nav-link" href="#">FAQ</a> </li>
-                    </ul> <a class="btn navbar-btn ml-md-2 btn-light">Contact us</a>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('/list') }}">Anúncios</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ url('/create') }}">Criar Anúncios</a> </li>
+                    </ul> 
+                    
+                    <a class="btn navbar-btn ml-md-2 btn-light">Login</a>
                 </div>
             </div>
         </nav>
