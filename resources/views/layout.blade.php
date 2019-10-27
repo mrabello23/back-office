@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Back Office App</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -69,14 +69,14 @@
             <div class="container"> 
                 <a class="navbar-brand text-primary" href="/"><b>Home</b></a>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbar" aria-controls="conteudoNavbar" aria-expanded="false" aria-label="Alterna navegação">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+                <div class="collapse navbar-collapse" id="conteudoNavbar">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"> <a class="nav-link" href="{{ url('/list') }}">Anúncios</a> </li>
-                        <li class="nav-item"> <a class="nav-link" href="{{ url('/create') }}">Criar Anúncios</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('announcements.index') }}">Anúncios</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('announcements.create') }}">Criar Anúncios</a> </li>
                     </ul> 
                     
                     <a class="btn navbar-btn ml-md-2 btn-light">Login</a>

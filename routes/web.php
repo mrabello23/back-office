@@ -4,21 +4,16 @@
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/list', function () {
-    return view('list');
-});
+Route::get('/announcements', 'AnnouncementsController@index')->name('announcements.index');
+Route::get('/announcements/create', 'AnnouncementsController@create')->name('announcements.create');
+Route::get('/announcements/{announcements}/edit', 'AnnouncementsController@edit')->name('announcements.show');
 
-Route::get('/create', function () {
-    return view('create');
-});
+Route::post('/announcements', 'AnnouncementsController@store');
+Route::put('/announcements/{announcements}', 'AnnouncementsController@update');
+Route::delete('/announcements/{announcements}', 'AnnouncementsController@destroy');
