@@ -11,12 +11,13 @@
                 </div>
                 
                 <div class="mx-auto p-4 col-md-6">
-                    <form method="POST" action="{{ route('announcements.save') }}">
+                    <form method="POST" action="{{ route('announcements.update') }}">
                         @csrf
+                        @method('PUT')
 
                         <div class="form-group"> 
                             <label for="">Título</label>
-                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="form1" placeholder="text" required value="{{ old('title') }}">
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="form1" placeholder="text" required value="{{ $announcement->title }}">
 
                             @if ($errors->has('title'))
                                 <div class="invalid-feedback">
@@ -27,7 +28,7 @@
 
                         <div class="form-group"> 
                             <label for="">Comentários</label>
-                            <textarea class="form-control @error('comments') is-invalid @enderror" id="form2" rows="3" placeholder="Your comments" required>{{ old('comments') }}</textarea> 
+                            <textarea class="form-control @error('comments') is-invalid @enderror" id="form2" rows="3" placeholder="Your comments" required>{{ $announcement->comments }}</textarea> 
                             
                             @if ($errors->has('comments'))
                                 <div class="invalid-feedback">
@@ -38,7 +39,7 @@
 
                         <div class="form-group"> 
                             <label for="">Data inicial</label>
-                            <input type="text" class="form-control @error('start_date') is-invalid @enderror" id="form3" placeholder="dd/mm/yyyy" required value="{{ old('start_date') }}">
+                            <input type="text" class="form-control @error('start_date') is-invalid @enderror" id="form3" placeholder="dd/mm/yyyy" required value="{{ $announcement->start_date }}">
                             
                             @if ($errors->has('start_date'))
                                 <div class="invalid-feedback">
@@ -49,7 +50,7 @@
                         
                         <div class="form-group"> 
                             <label for="">Data final</label>
-                            <input type="text" class="form-control @error('expiration_date') is-invalid @enderror" id="form4" placeholder="dd/mm/yyyy" required value="{{ old('expiration_date') }}">
+                            <input type="text" class="form-control @error('expiration_date') is-invalid @enderror" id="form4" placeholder="dd/mm/yyyy" required value="{{ $announcement->expiration_date }}">
 
                             @if ($errors->has('expiration_date'))
                                 <div class="invalid-feedback">
@@ -57,7 +58,7 @@
                                 </div>
                             @endif
                         </div>
-                        
+
                         <button type="submit" class="btn btn-primary">Enviar</button>
                     </form>
                 </div>

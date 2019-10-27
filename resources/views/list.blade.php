@@ -10,6 +10,16 @@
             </div>
 
             <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-success" role="alert">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <h4 class="alert-heading">Well done!</h4>
+                        <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-md-12" style="">
                     <div class="table-responsive">
                         <table class="table">
@@ -22,12 +32,28 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>Otto</td>
-                                </tr>
+                                @foreach ($announcements as $key => $announcements)
+                                    <tr>
+                                        <td>{{ ($key + 1) }}</td>
+                                        <td>{{ $announcements->title }}</td>
+                                        <td>{{ $announcements->comments }}</td>
+                                        <td>{{ $announcements->start_date }}</td>
+                                        <td>{{ $announcements->expiration_date }}</td>
+                                        <td>{{ $announcements->active }}</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Ação
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="{{ route('announcements.edit', $announcements->id) }}">Alterar</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Inativar</a>
+                                                </div>
+                                                </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
