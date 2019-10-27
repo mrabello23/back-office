@@ -14,7 +14,7 @@ class AnnouncementsController extends Controller
      */
     public function index()
     {
-        return view('list');
+        return view('list', ['announcements' => Announcements::all()]);
     }
 
     /**
@@ -35,7 +35,8 @@ class AnnouncementsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Announcements::create($this->validateAnnouncements());
+        return redirect(route('announcements.index'));
     }
 
     /**
@@ -46,7 +47,7 @@ class AnnouncementsController extends Controller
      */
     public function show(Announcements $announcements)
     {
-        return view('list', ['announcement' => $announcements]);
+        return $announcements;
     }
 
     /**
@@ -57,7 +58,7 @@ class AnnouncementsController extends Controller
      */
     public function edit(Announcements $announcements)
     {
-        return view('create', ['announcement' => $announcements]);
+        return view('edit', ['announcement' => $announcements]);
     }
 
     /**
@@ -69,7 +70,8 @@ class AnnouncementsController extends Controller
      */
     public function update(Request $request, Announcements $announcements)
     {
-        //
+        Announcements::update($this->validateAnnouncements());
+        return redirect(route('announcements.index'));
     }
 
     /**
@@ -80,6 +82,17 @@ class AnnouncementsController extends Controller
      */
     public function destroy(Announcements $announcements)
     {
-        //
+        Announcements::update(['active' => false]);
+        return redirect(route('announcements.index'));
+    }
+
+    private function validateAnnouncements()
+    {
+        return request()->validate([
+            'title' => ['required', 'min:3', 'max:100'],
+            'comments' => ['required', 'min:2'],
+            'start_date' => 'required',
+            'expiration_date' => 'required',
+        ]);
     }
 }

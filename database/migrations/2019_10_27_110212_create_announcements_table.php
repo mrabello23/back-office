@@ -19,6 +19,7 @@ class CreateAnnouncementsTable extends Migration
             $table->text('comments');
             $table->date('start_date');
             $table->date('expiration_date');
+            $table->boolean('active')->default(true);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
