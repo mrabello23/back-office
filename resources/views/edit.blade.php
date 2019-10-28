@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
     <div class="py-5">
@@ -11,7 +11,7 @@
                 </div>
                 
                 <div class="mx-auto p-4 col-md-6">
-                    <form method="POST" action="{{ route('announcements.update') }}">
+                    <form method="POST" action="{{ route('announcements.update', $announcement->id) }}">
                         @csrf
                         @method('PUT')
 
