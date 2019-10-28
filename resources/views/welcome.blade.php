@@ -7,7 +7,7 @@
                 <div class="container">
                     <div class="row mb-5">
                         <div class="col-md-12">
-                            <h1 class="">Back Office App</h1>
+                            <h1 class="">Announcements App</h1>
                         </div>
                     </div>
 

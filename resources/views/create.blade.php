@@ -16,7 +16,13 @@
 
                         <div class="form-group"> 
                             <label for="">Título</label>
-                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="form1" placeholder="text" required value="{{ old('title') }}">
+                            <input 
+                                class="form-control @error('title') is-invalid @enderror" 
+                                type="text" 
+                                id="form1" 
+                                name="title" 
+                                value="{{ old('title') }}" 
+                                required>
 
                             @if ($errors->has('title'))
                                 <div class="invalid-feedback">
@@ -27,7 +33,12 @@
 
                         <div class="form-group"> 
                             <label for="">Comentários</label>
-                            <textarea class="form-control @error('comments') is-invalid @enderror" id="form2" rows="3" placeholder="Your comments" required>{{ old('comments') }}</textarea> 
+                            <textarea 
+                                class="form-control @error('comments') is-invalid @enderror" 
+                                id="form2" 
+                                rows="3" 
+                                name="comments" 
+                                required>{{ old('comments') }}</textarea> 
                             
                             @if ($errors->has('comments'))
                                 <div class="invalid-feedback">
@@ -36,26 +47,56 @@
                             @endif
                         </div>
 
-                        <div class="form-group"> 
-                            <label for="">Data inicial</label>
-                            <input type="text" class="form-control @error('start_date') is-invalid @enderror" id="form3" placeholder="dd/mm/yyyy" required value="{{ old('start_date') }}">
-                            
-                            @if ($errors->has('start_date'))
-                                <div class="invalid-feedback">
-                                    Este campo é obrigatório.
-                                </div>
-                            @endif
-                        </div>
-                        
-                        <div class="form-group"> 
-                            <label for="">Data final</label>
-                            <input type="text" class="form-control @error('expiration_date') is-invalid @enderror" id="form4" placeholder="dd/mm/yyyy" required value="{{ old('expiration_date') }}">
+                        <div class="form-row">
+                            <div class='col-md-6'>
+                                <div class="form-group">
+                                    <label for="">Data inicial</label>
+                                    <div class="input-group date" id="datepicker1">
+                                        <input type="text" 
+                                            id="form3"
+                                            class="form-control" 
+                                            data-target="#datepicker1" 
+                                            name="start_date" 
+                                            value="{{ old('start_date') }}" 
+                                            required>
 
-                            @if ($errors->has('expiration_date'))
-                                <div class="invalid-feedback">
-                                    Este campo é obrigatório.
+                                        <div class="input-group-append" data-target="#datepicker1" data-toggle="datepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+
+                                    @if ($errors->has('start_date'))
+                                        <div class="invalid-feedback">
+                                            Este campo é obrigatório.
+                                        </div>
+                                    @endif
                                 </div>
-                            @endif
+                            </div>
+
+                            <div class='col-md-6'>
+                                <div class="form-group">
+                                    <label for="">Data final</label>
+                                    <div class="input-group date" id="datepicker2">
+                                        <input type="text"
+                                            id="form4" 
+                                            class="form-control" 
+                                            data-target="#datepicker2" 
+                                            name="expiration_date" 
+                                            value="{{ old('expiration_date') }}" 
+                                            required>
+
+                                        <div class="input-group-append" data-target="#datepicker2" data-toggle="datepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+
+                                    @if ($errors->has('expiration_date'))
+                                        <div class="invalid-feedback">
+                                            Este campo é obrigatório.
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Enviar</button>
@@ -64,4 +105,26 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script type="text/javascript">
+        $(function () {
+            $('.input-group.date').datepicker({
+                format: "dd/mm/yyyy",
+                todayBtn: true,
+                language: "pt-BR",
+                autoclose: true,
+                todayHighlight: true
+            });
+
+            $("#datepicker1").on("changeDate", function (e) {
+                $('#datepicker2').datepicker('setStartDate', e.date);
+            });
+
+            $("#datepicker2").on("changeDate", function (e) {
+                $('#datepicker1').datepicker('setEndDate', e.date);
+            });
+        });
+    </script>
 @endsection
