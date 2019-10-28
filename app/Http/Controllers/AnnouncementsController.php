@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Announcements;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AnnouncementsController extends Controller
@@ -35,7 +36,11 @@ class AnnouncementsController extends Controller
      */
     public function store(Request $request)
     {
-        Announcements::create($this->validateAnnouncements());
+        $fieldsToSave = $this->setCustomValues($this->validateAnnouncements());
+        Announcements::create($fieldsToSave);
+
+        session(['success' => true]);
+
         return redirect(route('announcements.index'));
     }
 
@@ -70,7 +75,11 @@ class AnnouncementsController extends Controller
      */
     public function update(Request $request, Announcements $announcements)
     {
-        Announcements::update($this->validateAnnouncements());
+        $fieldsToSave = $this->setCustomValues($this->validateAnnouncements());
+        $announcements->update($fieldsToSave);
+
+        session(['success' => true]);
+
         return redirect(route('announcements.index'));
     }
 
@@ -82,7 +91,7 @@ class AnnouncementsController extends Controller
      */
     public function destroy(Announcements $announcements)
     {
-        Announcements::update(['active' => false]);
+        $announcements->update(['active' => false]);
         return redirect(route('announcements.index'));
     }
 
@@ -94,5 +103,14 @@ class AnnouncementsController extends Controller
             'start_date' => 'required',
             'expiration_date' => 'required',
         ]);
+    }
+
+    public function setCustomValues(array $fieldsToSave)
+    {
+        $fieldsToSave['user_id'] = Auth::id();
+        $fieldsToSave['start_date'] = Announcements::dateBrToDatabase($fieldsToSave['start_date']);
+        $fieldsToSave['expiration_date'] = Announcements::dateBrToDatabase($fieldsToSave['expiration_date']);
+
+        return $fieldsToSave;
     }
 }
