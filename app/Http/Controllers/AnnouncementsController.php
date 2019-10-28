@@ -15,7 +15,7 @@ class AnnouncementsController extends Controller
      */
     public function index()
     {
-        return view('list', ['announcements' => Announcements::all()]);
+        return view('list', ['announcements' => Announcements::paginate(10)]);
     }
 
     /**

@@ -37,21 +37,21 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($announcements as $key => $announcements)
+                                @foreach ($announcements as $key => $announcement)
                                     <tr>
                                         <td>{{ ($key + 1) }}</td>
-                                        <td>{{ $announcements->title }}</td>
-                                        <td>{{ $announcements->comments }}</td>
-                                        <td>{{ $announcements->start_date }}</td>
-                                        <td>{{ $announcements->expiration_date }}</td>
-                                        <td>{{ ($announcements->active ? 'Sim' : 'Não') }}</td>
+                                        <td>{{ $announcement->title }}</td>
+                                        <td>{{ $announcement->comments }}</td>
+                                        <td>{{ $announcement->start_date }}</td>
+                                        <td>{{ $announcement->expiration_date }}</td>
+                                        <td>{{ ($announcement->active ? 'Sim' : 'Não') }}</td>
                                         <td>
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     Ação
                                                 </button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="{{ route('announcements.edit', $announcements->id) }}">Alterar</a>
+                                                    <a class="dropdown-item" href="{{ route('announcements.edit', $announcement->id) }}">Alterar</a>
                                                     <div class="dropdown-divider"></div>
                                                     <form action="{{ route('announcements.remove', $announcements) }}" method="POST">
                                                         @csrf
@@ -71,14 +71,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <ul class="pagination">
-                        <li class="page-item"> <a class="page-link" href="#"> <span>«</span></a> </li>
-                        <li class="page-item active"> <a class="page-link" href="#">1</a> </li>
-                        <li class="page-item"> <a class="page-link" href="#">2</a> </li>
-                        <li class="page-item"> <a class="page-link" href="#">3</a> </li>
-                        <li class="page-item"> <a class="page-link" href="#">4</a> </li>
-                        <li class="page-item"> <a class="page-link" href="#"> <span>»</span></a> </li>
-                    </ul>
+                    {{ $announcements->links() }}
                 </div>
             </div>
         </div>
