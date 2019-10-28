@@ -105,7 +105,7 @@ class AnnouncementsController extends Controller
         ]);
     }
 
-    public function setCustomValues(array $fieldsToSave)
+    private function setCustomValues(array $fieldsToSave)
     {
         $fieldsToSave['user_id'] = Auth::id();
         $fieldsToSave['start_date'] = Announcements::dateBrToDatabase($fieldsToSave['start_date']);
