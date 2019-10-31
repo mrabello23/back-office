@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\App\Announcements;
+use App\Announcements;
 use Faker\Generator as Faker;
 
 $factory->define(Announcements::class, function (Faker $faker) {
@@ -11,7 +11,7 @@ $factory->define(Announcements::class, function (Faker $faker) {
         'title' => $faker->sentence(),
         'comments' => $faker->paragraph(),
         'start_date' => date('Y-m-d'),
-        'expiration_date' => date('Y-m-d', strtotime('+7 days')),
+        'expiration_date' => date('Y-m-d', strtotime('+1 day')),
         'active' => true,
     ];
 });

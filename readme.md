@@ -18,7 +18,8 @@ Application that implements a back office area of a website where users will be 
 ## Testes de unidade
 
 - Acessar pasta da aplicação via bash;
-- Na raiz do projeto, executar o comando "vendor/bin/phpunit" para rodar a suite de teste;
+- Na raiz do projeto, executar o comando "phpunit" para rodar a suite de teste;
+- Caso ocorra algum erro de comando não encontrado, executar "vendor/bin/phpunit";
 
 ## Observações
 
